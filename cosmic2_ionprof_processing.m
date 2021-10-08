@@ -3,26 +3,26 @@ You should edit Section 1 only!!!!!
 on your desktop Go to "This Pc" and Open the C partition!!
 Functions of this code are: 
 
-Section-1:
+Section-2:
 Downloading  'ionPrf_prov1_year_doy.tar.gz' files from COSMIC Data Analysis
      and Archive Center CDAAC https://data.cosmic.ucar.edu/gnss-ro/cosmic2/
-Section-2:
-Untar the   'ionPrf_prov1_year_doy.tar.gz'  to   'ionPrf_prov1_year_doy.nc'
 Section-3:
+Untar the   'ionPrf_prov1_year_doy.tar.gz'  to   'ionPrf_prov1_year_doy.nc'
+Section-4:
 Reading of the nc files   and   export   the  follwing  variables  from  it
 {GEO_lat         GEO_lon         MSL_alt         TEC_cal         ELEC_dens}
 Extracting the time from  the nc files name and creat new variable for Time
 called   'Generate_time' and save all variables in txt  files  named by the
 date and time in new folder called "txtdata" (about 3500 file for each day) 
-Section-4:
-Merge  txt files in one txt file for each sat and name it by the sat number 
 Section-5:
+Merge  txt files in one txt file for each sat and name it by the sat number 
+Section-6:
 Merge the txt files of all satellites in one file in txt format and another 
 one  in  xlsx  format  and   save  it  in  new   folder   called   results, 
 the    file     named       " alldatafor-year-doy-month-day.txt and .xlsx "
-Section-6:
-plot  the  electron  density  with  altitude  for  all  atmospheris  layers
 Section-7:
+plot  the  electron  density  with  altitude  for  all  atmospheris  layers
+Section-8:
 plot  the  electron  density  with  altitude  for  the             F2 layer
 plot the electron density map with latitude and longitude for the  F2 layer
 save  the data  for  the F2  layer in new Excel.xlsx file in results folder
@@ -34,7 +34,7 @@ my Acknowledgement to  Mr: Samerr Hisham  from the Space Weather Monitoring
 Center (SWMC) For his valuable help in coding.       Samerrhisham@gmail.com
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-Not that data is filterd in section 6 and section 7 in part 2,3,and 4
+Not that data is filterd in section 7 and section 8 in part 2,3,and 4
 in part 2 all Ne values below the min_Ne is removed
 in part 3 all data beyond the selected latitude is removed
 in part 4 all Ne data higher than the mean of maximum 20 points is removed
@@ -91,7 +91,7 @@ for i1=start_doy:end_doy   %From 1 to 365 or 366 for the whole year
     end
     
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Section 2: UNTAR the .TAR.Z files to .nc files
+%% Section 3: UNTAR the .TAR.Z files to .nc files
   doy1 =char(extractBetween(filename1,19,21));
   year1=char(extractBetween(filename1,14,17));    
  filename2=(['UNTARionP_' year1 '_' doy1 '.nc']);
@@ -106,7 +106,7 @@ for i1=start_doy:end_doy   %From 1 to 365 or 366 for the whole year
   end
   sprintf([ 'Job successfully finished for UNTAR '    filename1    ' file!!'])
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Section 3: read and convert nc.files to txt and EXCEL.xlsx files       
+%% Section 4: read and convert nc.files to txt and EXCEL.xlsx files       
 % part 1
 cd (extractedfile); mkdir ('txtandexcel');cd (yearfolder);  mkdir ('results');
 cd (extractedfile); filePattern1 = fullfile(extractedfile, 'ion*_nc'); 
@@ -139,7 +139,7 @@ for C = 1:6
  sprintf(['Job successfully finished for converting '   filename2 ' from ' ...
           'nc to .txt with time!!'])
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Section 4: Merge text files for each satellite
+%% Section 5: Merge text files for each satellite
 txtfolder = ([extractedfile '\txtandexcel\']);  cd (txtfolder);
 folderData4=(txtfolder); filePattern4 = fullfile(folderData4, 'ion*.txt'); 
 txtfiles4 = dir(filePattern4);                 txtfilesc4 = length(txtfiles4);
@@ -159,7 +159,7 @@ for C = 1:6
                ' for each satellite!!'])        
 end   
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Section 5: Merge text files for all satellites 
+%% Section 6: Merge text files for all satellites 
  % part 1
  cd (txtfolder)
  filePattern5=fullfile(folderData4, 'sat*.txt');satfiles5=dir(filePattern5);
@@ -181,7 +181,7 @@ end
  sprintf(['Job successfully finished for merging files of ' satfiles5.name ...
           ' in one file!!'])
   %% 
-  % part 1
+  % part 2
   cd  ([yearfolder '\results']);
   filename6=(['satdatafor-' year1 '-' doy1 '-month-' mm '-day-' dd  '.txt ']);
   datah = load(filename6); 
@@ -192,7 +192,7 @@ end
       [time lat long alt tec ne]);
  sprintf(['Job successfully finished for converting ' filename6 ' to xlsx!!'])
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Section 6: plot Ne with altitude for the whole atmosphere
+%% Section 7: plot Ne with altitude for the whole atmosphere
    % part 1:
    cd ([yearfolder '\results\']);
    datamatrix=xlsread(['alldatafor-' year1 '-' doy1 '-month-' mm '-day-' dd]);
@@ -236,7 +236,7 @@ saveas(figure(2),['average Ne profile all layers ' year1 '-' doy1 '-' dd ...
 saveas(figure(2),['average Ne profile all layers ' year1 '-' doy1 '-' dd ...
                   '-' mm '-' yys '.png']); close(figure(2))
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% Section 7: plot Ne with altitude ana Ne map for the F2-region
+%% Section 8: plot Ne with altitude ana Ne map for the F2-region
 % part 1:
 l_alt=num2str(lower_altitude); 
 u_alt=num2str(upper_altitude);
