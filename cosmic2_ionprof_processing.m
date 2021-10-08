@@ -34,7 +34,7 @@ my Acknowledgement to  Mr: Samerr Hisham  from the Space Weather Monitoring
 Center (SWMC) For his valuable help in coding.       Samerrhisham@gmail.com
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-Not that data is filterd in section 7 and section 8 in part 2,3,and 4
+Note that data is filterd in section 7 and section 8 in part 2,3,and 4
 in part 2 all Ne values below the min_Ne is removed
 in part 3 all data beyond the selected latitude is removed
 in part 4 all Ne data higher than the mean of maximum 20 points is removed
@@ -49,22 +49,25 @@ a space  environment  specialist  at   the  Egyptian  Space  Agency  (EgSA)
 for any technical or scientific advice from you to me or vice versa mail me
 at HassanNoorElDeen@egsa.gov.eg or  HassanNour-Eldien@science.helwan.edu.eg
 for acknowledgment:
-Eng: Hassan Noor El-deen,   Space Environment Studies and Tests Department,
+Hassan Noor El-deen,        Space Environment Studies and Tests Department,
 Egyptian Space Agency EGSA, 1564 Cairo, Egypt. 
 May Allah accept this effort in our good deeds!
 %}
 %%
 close all; clear; clc;
 %% Section 1: Enter information for the study period
-datafolder=('C:');            %All files will be downloaded on the C partition
-                           %Preferred to select partition with SSD Hard Memory 
-year = num2str(2020);                 %Cosmic2 for period (Oct-2019 until now)
-start_doy = 1;                      %You can start from any doy from 1 to 365) 
-end_doy = 366;                          %You can end at any doy from 1 to 365)
-mission = 'cosmic2' ;               %This code only work with cosmic 2 mission
-lower_altitude= 200;               %you can select any range from 10 to 800 Km
-upper_altitude= 350;
-min_Ne= 100000;       %keep it 100000, if you don't have a solar eclipse model
+datafolder=('C:');           % All files will be downloaded on the C partition
+                          % Preferred to select partition with SSD Hard Memory 
+year = num2str(2020);                % Cosmic2 for period (Oct-2019 until now)
+start_doy = 1;                     % You can start from any doy from 1 to 365) 
+end_doy = 366;                         % You can end at any doy from 1 to 365)
+mission = 'cosmic2' ;              % This code only work with cosmic 2 mission
+lower_altitude= 200;              % you can select any range from 10 to 800 Km
+upper_altitude= 350;               % 200 to 350 is for F2-layer altitude range
+min_Ne= 100000;      % keep it 100000, if you don't have a solar eclipse model
+down_factor=2;         % Make it 1 if you want to work with files at full size
+                       %!!!!!!!!!!!!!! without downsampling It may cause Error 
+                       %!!!!!!!!!! as MATLAB couldn't work with big size files
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -186,7 +189,7 @@ end
   cd  ([yearfolder '\results']);
   filename6=(['satdatafor-' year1 '-' doy1 '-month-' mm '-day-' dd  '.txt ']);
   datah = load(filename6); 
-  data=downsample(datah,2);
+  data=downsample(datah,down_factor);
   time= data(:,1); lat= data(:,2); long= data(:,3);
   alt=  data(:,4); tec= data(:,5); ne=   data(:,6);
   xlswrite(['alldatafor-' year1 '-' doy1 '-month-' mm '-day-' dd  '.xlsx'], ...
