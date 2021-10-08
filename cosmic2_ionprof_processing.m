@@ -47,7 +47,10 @@ MSc  student  in  the  Space  Sciencs  departiment  at   Helwan  University
 a space  environment  specialist  at   the  Egyptian  Space  Agency  (EgSA)
 for any technical or scientific advice from you to me or vice versa mail me
 at HassanNoorElDeen@egsa.gov.eg or  HassanNour-Eldien@science.helwan.edu.eg
-May Allah accept this effort in our good deeds
+for acknowledgment:
+Eng: Hassan Noor El-deen,   Space Environment Studies and Tests Department,
+Egyptian Space Agency EGSA, 1564 Cairo, Egypt. 
+May Allah accept this effort in our good deeds!
 %}
 %%
 close all; clear; clc;
