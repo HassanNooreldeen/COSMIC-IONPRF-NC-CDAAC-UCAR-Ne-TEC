@@ -317,7 +317,7 @@ colormap(jet())
 xlabel('longitude')
 ylabel('latitude')
  title(['Electron density map in ' ...
-     doy1 '-' dd '-' mm '-' yys 'at altitude from ' l_alt ' to ' u_alt ]);    
+     doy1 '-' dd '-' mm '-' yys ' at altitude from ' l_alt ' to ' u_alt ]);    
 set(gcf,'position',get(0,'screensize'));  
 saveas(figure(5),['electron density map for Ne at altitude from ' l_alt ...
     ' to ' u_alt '-' year1 '-' doy1 '-' dd '-' mm '-' yys '.fig']);
