@@ -38,7 +38,8 @@ Not that data is filterd in section 7 and section 8 in part 2,3,and 4
 in part 2 all Ne values below the min_Ne is removed
 in part 3 all data beyond the selected latitude is removed
 in part 4 all Ne data higher than the mean of maximum 20 points is removed
-Comment part 4 in section 6 and 7 to stop the high fluctuation filter
+Comment part 4 in section 6 and 7 to stop the high fluctuation filter.
+Data is downsampled by a factored 2, in section 6 part 2.
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 credit: 
