@@ -68,7 +68,7 @@ min_Ne= 100000;       %keep it 100000, if you don't have a solar eclipse model
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% Section 2:  Download data from COSMIC UCAR data center    
-cd (datafolder);                  mkdir([ 'cosmic' year]);
+cd ([datafolder '\']);                    mkdir([ 'cosmic' year]);
 yearfolder =([datafolder '\cosmic' year]);cd (yearfolder);
 mkdir(['rawdata' year]);   
 rawfolder=([datafolder '\cosmic' year '\rawdata' year '\']);  
